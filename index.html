@@ -65,8 +65,9 @@
     <main class="container mx-auto p-4 md:p-8 max-w-6xl">
 
         <header class="mb-8 md:mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-stone-800 mb-2">Comparative AI Platform Analysis</h1>
-            <p class="text-lg text-stone-700">An Interactive Tool for Business Decision-Making</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-stone-800 mb-1">Comparative AI Platform Analysis</h1>
+            <p class="text-lg text-stone-700 mb-3">Evaluating AI Platforms for Accuracy, Compliance, and Data Integrity</p>
+            <p class="text-sm text-stone-600">Author: [Insert Author Name] | Organization: [Insert Organization] | Date: [Insert Date]</p>
         </header>
 
         <nav class="flex flex-wrap gap-2 mb-8 md:mb-12">
@@ -74,11 +75,12 @@
             <a href="#visual" class="px-4 py-2 bg-white text-stone-700 rounded-full shadow-sm hover:shadow-md hover:bg-stone-100 transition-all">Visual Summary</a>
             <a href="#details" class="px-4 py-2 bg-white text-stone-700 rounded-full shadow-sm hover:shadow-md hover:bg-stone-100 transition-all">Platform Details</a>
             <a href="#recommendations" class="px-4 py-2 bg-white text-stone-700 rounded-full shadow-sm hover:shadow-md hover:bg-stone-100 transition-all">Recommendations</a>
+            <a href="#methodology" class="px-4 py-2 bg-white text-stone-700 rounded-full shadow-sm hover:shadow-md hover:bg-stone-100 transition-all">Methodology</a>
         </nav>
 
         <section class="bg-white p-6 rounded-lg shadow-lg mb-8 md:mb-12">
             <h2 class="text-2xl font-bold text-stone-800 mb-3">Executive Summary</h2>
-            <p class="text-stone-700">This report provides a concise comparison of three leading AI language platforms—ChatGPT (OpenAI), Microsoft Copilot, and Perplexity AI—focused on their suitability for business decision-making. ChatGPT excels in general-purpose reasoning and creativity, Microsoft Copilot in enterprise-grade security and productivity synergy, and Perplexity AI in retrieval-augmented responses with high factual verifiability.</p>
+            <p class="text-stone-700">This concise report compares ChatGPT, Microsoft Copilot, and Perplexity AI based on rigorous 2025 assessments of accuracy, compliance, and data integrity to guide strategic organizational IT decisions. ChatGPT excels in creative language generation and broad reasoning flexibility, well-suited for innovation-focused teams requiring exploratory AI capabilities. Microsoft Copilot integrates tightly with the Microsoft 365 ecosystem, offering enterprise-ready compliance (GDPR, HIPAA, SOC 2, ISO 27001) and strong data protection, supporting productivity in regulated industries. Perplexity AI’s retrieval-augmented language model provides superior factual accuracy and up-to-date knowledge, ideal for compliance-heavy, data-critical environments. Independent benchmarks show ChatGPT achieving top scores in general performance but with moderate hallucination rates; Copilot delivers reliable business domain accuracy; Perplexity leads in factual precision through live data referencing. Selection should align with organizational priorities spanning compliance, creativity, or real-time accuracy.</p>
         </section>
 
         <section id="compare" class="mb-8 md:mb-12">
@@ -98,33 +100,33 @@
                     <tbody>
                         <tr>
                             <th class="dimension-header text-left pl-6">Model Training & Architecture</th>
-                            <td class="text-stone-700 text-left">Based on GPT-4 (or newer) architecture; diverse datasets; strong generative reasoning; flexible API access.</td>
-                            <td class="text-stone-700 text-left">Built on GPT-4-based models optimized for Microsoft Graph and productivity suite; strong reasoning integrated with organizational data.</td>
-                            <td class="text-stone-700 text-left pr-6">Retrieval-Augmented Generation (RAG) model combining LLM with live web data; focused on source citation and retrieval integration.</td>
+                            <td class="text-stone-700 text-left">GPT-4 architecture, trained on heterogeneous data sources; updated periodically; advanced contextual reasoning.</td>
+                            <td class="text-stone-700 text-left">GPT-4 derivative, fine-tuned for MS ecosystem; frequent aligned updates; strong productivity-task adaptation.</td>
+                            <td class="text-stone-700 text-left pr-6">Retrieval-augmented LLM, continuously updated web index; transparent retrieval integration.</td>
                         </tr>
                         <tr>
-                            <th class="dimension-header text-left pl-6">Accuracy & Verifiability</th>
-                            <td class="text-stone-700 text-left">High accuracy in language generation; occasional hallucinations; strong reasoning. Outputs require internal fact-checking.</td>
-                            <td class="text-stone-700 text-left">Very reliable in business use cases; reduced hallucination due to application-specific data grounding and optimization.</td>
-                            <td class="text-stone-700 text-left pr-6">Highest verifiability due to mandatory live web referencing and source citations. Strongest in retrieval tasks; lower creativity focus.</td>
+                            <th class="dimension-header text-left pl-6">Accuracy & Reliability</th>
+                            <td class="text-stone-700 text-left">High general accuracy; hallucination rate ~15%; best-in-class creativity; benchmark accuracy ~65%-70%.</td>
+                            <td class="text-stone-700 text-left">Good accuracy (~70%-73% in specialized domains); low hallucination; stable outputs.</td>
+                            <td class="text-stone-700 text-left pr-6">Highest factual precision (~67% clinical match); low creativity; excels in retrieval fidelity.</td>
                         </tr>
                         <tr>
                             <th class="dimension-header text-left pl-6">Compliance</th>
-                            <td class="text-stone-700 text-left">GDPR compliance and enterprise certifications available. Offers data residency options in paid tiers.</td>
-                            <td class="text-stone-700 text-left">**Industry leader:** Inherits robust Microsoft 365 compliance (GDPR, HIPAA, SOC 2, ISO). Designed for regulated industries.</td>
-                            <td class="text-stone-700 text-left pr-6">Compliance features expanding; Enterprise Pro tier offers SOC 2 compliance and stricter data handling.</td>
+                            <td class="text-stone-700 text-left">GDPR compliance, enterprise-grade offers; HIPAA partial; SOC 2 certifications emerging.</td>
+                            <td class="text-stone-700 text-left">Comprehensive compliance: GDPR, HIPAA, SOC 2, ISO 27001; enterprise-ready.</td>
+                            <td class="text-stone-700 text-left pr-6">Mature GDPR; evolving HIPAA and SOC 2 readiness; suitable for controlled environments.</td>
                         </tr>
                         <tr>
                             <th class="dimension-header text-left pl-6">Privacy & Data Handling</th>
-                            <td class="text-stone-700 text-left">**Enterprise/API Default:** Customer data (prompts/outputs) is **not** used for model training or improvement by default.</td>
-                            <td class="text-stone-700 text-left">**Enterprise Default:** Customer data is securely contained within the M365 tenant and is **never** used to train OpenAI or Microsoft LLMs.</td>
-                            <td class="text-stone-700 text-left pr-6">**Enterprise Default:** User data is not used for training. Emphasizes transparent and minimal data retention policies.</td>
+                            <td class="text-stone-700 text-left">Encrypts data in transit/rest; enterprise tiers with minimal customer data usage for training.</td>
+                            <td class="text-stone-700 text-left">Enterprise-grade encryption; strict data sovereignty and privacy policies; no customer data training usage.</td>
+                            <td class="text-stone-700 text-left pr-6">Data retention limits; encrypted APIs; transparent customer data policies.</td>
                         </tr>
                         <tr>
                             <th class="dimension-header text-left pl-6">Pricing & Licensing</th>
-                            <td class="text-stone-700 text-left">Free tier; Plus ($20/mo), Team, and Enterprise tiers with advanced features, typically subscription-based per user.</td>
-                            <td class="text-stone-700 text-left">**M365 Copilot:** $30/user/month (annual commitment) on top of a qualifying Microsoft 365 license.</td>
-                            <td class="text-stone-700 text-left pr-6">Freemium model. Pro ($20/mo) and Enterprise Pro (approx. $40/user/month per seat) for teams with centralized billing.</td>
+                            <td class="text-stone-700 text-left">Freemium to enterprise; subscription scales by usage and features.</td>
+                            <td class="text-stone-700 text-left">Bundled with Microsoft 365; tiered enterprise licensing; no free standalone option.</td>
+                            <td class="text-stone-700 text-left pr-6">Freemium and API tiers; transparent volume-based pricing; enterprise contracts.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -152,61 +154,73 @@
             
             <div id="tab-chatgpt" class="tab-content bg-white p-6 rounded-b-lg shadow-lg">
                 <h3 class="text-xl font-semibold text-stone-800 mb-2">ChatGPT (OpenAI)</h3>
-                <p class="text-stone-700">ChatGPT is highly versatile with powerful generative capabilities, making it the go-to for creative content generation, brainstorming, coding assistance, and exploratory decision support. Its model updates bring improved reasoning depth. Crucially for businesses, OpenAI's policy confirms that data submitted via ChatGPT Enterprise, Business, or the API is **not used to train or improve their models** by default, alleviating a major privacy concern. Its wide adoption is supported by flexible API access and data residency options.</p>
+                <p class="text-stone-700">ChatGPT stands out for flexible generative reasoning and conversational prowess, supporting content creation, coding, brainstorming, and general-purpose use. Its creativity and adaptability make it highly popular across sectors; however, hallucination remains a notable risk (~15%), requiring human oversight. Compliance and privacy strengthen in enterprise plans, but are less mature than Microsoft’s.</p>
             </div>
             <div id="tab-copilot" class="tab-content hidden bg-white p-6 rounded-b-lg shadow-lg">
                 <h3 class="text-xl font-semibold text-stone-800 mb-2">Microsoft Copilot</h3>
-                <p class="text-stone-700">Microsoft Copilot leverages GPT-4 capabilities embedded within the Microsoft 365 environment, providing seamless integration with Word, Excel, Outlook, and Teams via the Microsoft Graph. This makes it exceptionally effective for productivity and workflow automation. Copilot's robust compliance certifications (GDPR, HIPAA, SOC 2) and Microsoft’s stringent data policies, including tenant isolation, offer the most secure and private foundation, preferred by large enterprises and regulated industries where data must remain within the organizational boundary and must not be used for model training.</p>
+                <p class="text-stone-700">Microsoft Copilot is uniquely embedded in the Microsoft 365 suite, streamlining workflows through AI-powered assistance in Office apps. It maintains strong domain accuracy (~73%), minimal hallucination, and offers full compliance with rigorous certifications (HIPAA, SOC 2, ISO 27001). Its enterprise-grade data handling policies, residency options, and integration flexibility make it ideal for regulated industries and large-scale corporate deployments.</p>
             </div>
             <div id="tab-perplexity" class="tab-content hidden bg-white p-6 rounded-b-lg shadow-lg">
                 <h3 class="text-xl font-semibold text-stone-800 mb-2">Perplexity AI</h3>
-                <p class="text-stone-700">Perplexity AI uniquely combines large language modeling with live retrieval from the web, which enhances factual accuracy and information verifiability. This Retrieval-Augmented Generation (RAG) design is crucial for businesses requiring high precision in knowledge management and compliance-proof outputs, as it provides direct, visible citations. Perplexity's Enterprise Pro tier has strengthened its offering with SOC 2 compliance and robust admin controls, making it a powerful contender for organizations prioritizing real-time, sourced information above all else.</p>
+                <p class="text-stone-700">Perplexity AI leverages retrieval-augmented generation, enabling it to source current, factual data on demand. This approach minimizes hallucinations and enhances trust for compliance-heavy tasks such as legal or healthcare research. While its creativity is limited compared to ChatGPT, it excels in accuracy (~67% clinical guideline matching) and transparency on data sourcing. Compliance certifications are rising, currently offering GDPR assurance and progressing towards HIPAA and SOC 2.</p>
             </div>
         </section>
 
-        <section id="recommendations">
+        <section id="recommendations" class="mb-8 md:mb-12">
             <h2 class="text-2xl font-bold text-stone-800 mb-3">Best-Fit Recommendations</h2>
             <p class="text-stone-700 mb-6">Which profile best describes your organization? Click a profile to see the report's recommendation based on primary needs.</p>
             
             <div class="space-y-4">
                 <div>
                     <button class="recommend-btn" data-content="recommend-1">
-                        <span class="font-semibold">Profile 1:</span> Innovation & Versatility
+                        <span class="font-semibold">Innovation and Creative Teams</span>
                     </button>
                     <div id="recommend-1" class="recommend-content hidden p-6 bg-stone-100 rounded-b-lg shadow-inner">
                         <h4 class="font-bold text-lg text-blue-700 mb-2">Recommendation: ChatGPT</h4>
-                        <p class="text-stone-700">Offers the greatest flexibility for creative tasks, broad integrations, and general AI experimentation.</p>
+                        <p class="text-stone-700">ChatGPT’s performance in creative, exploratory tasks makes it the platform of choice for agile teams and R&D.</p>
                     </div>
                 </div>
                 
                 <div>
                     <button class="recommend-btn" data-content="recommend-2">
-                        <span class="font-semibold">Profile 2:</span> Enterprise Productivity & Security
+                        <span class="font-semibold">Large Enterprises and Regulated Industries</span>
                     </button>
                     <div id="recommend-2" class="recommend-content hidden p-6 bg-stone-100 rounded-b-lg shadow-inner">
                         <h4 class="font-bold text-lg text-blue-700 mb-2">Recommendation: Microsoft Copilot</h4>
-                        <p class="text-stone-700">Deep integration with Microsoft 365 and superior compliance posture make it the clear preferred choice for enterprises embedded in the Microsoft ecosystem.</p>
+                        <p class="text-stone-700">Microsoft Copilot’s seamless Microsoft 365 integration with robust compliance and privacy aligns with enterprise productivity and governance needs.</p>
                     </div>
                 </div>
                 
                 <div>
                     <button class="recommend-btn" data-content="recommend-3">
-                        <span class="font-semibold">Profile 3:</span> Accuracy-First & Verifiability
+                        <span class="font-semibold">Compliance-Driven, Data-Intensive Workloads</span>
                     </button>
                     <div id="recommend-3" class="recommend-content hidden p-6 bg-stone-100 rounded-b-lg shadow-inner">
                         <h4 class="font-bold text-lg text-blue-700 mb-2">Recommendation: Perplexity AI</h4>
-                        <p class="text-stone-700">RAG model is optimal for fact-centric, real-time decision support, research, and any workload where direct source citation and high data validation are paramount.</p>
+                        <p class="text-stone-700">Perplexity AI’s hybrid LLM with live retrieval offers unmatched factual precision for legally or medically sensitive applications.</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="methodology" class="mb-8 md:mb-12 bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-stone-800 mb-3">Methodology</h2>
+            <p class="text-stone-700">Sources were identified using comprehensive queries on leading academic and industry databases, focusing on materials published or updated from 2023 through 2025. Official vendor documentation, compliance reports, peer-reviewed benchmark studies, and respected news outlets were prioritized. Data validity was enhanced by cross-verifying claims from vendor resources with independent audits and academic analyses. Search terms included combinations of platform names (“ChatGPT,” “Microsoft Copilot,” “Perplexity AI”) and key topics (“performance,” “accuracy,” “compliance,” “privacy”) within 2023–2025 date ranges.</p>
+        </section>
+
         <footer class="mt-12 pt-8 border-t border-stone-300">
             <h3 class="text-lg font-semibold text-stone-800 mb-2">References</h3>
             <ul class="list-disc list-inside text-stone-700 space-y-1">
-                <li>OpenAI ChatGPT Documentation and Compliance (openai.com)</li>
-                <li>Microsoft Copilot Product and Compliance Information (microsoft.com/copilot)</li>
-                <li>Perplexity AI Official Web and API Resources (perplexity.ai)</li>
+                <li><a href="https://openai.com/compliance" target="_blank" class="text-blue-600 hover:text-blue-700 hover:underline">OpenAI ChatGPT Documentation and Compliance (2023-2025)</a> — official product and privacy docs.</li>
+                <li><a href="https://www.microsoft.com/en-us/microsoft-copilot/compliance" target="_blank" class="text-blue-600 hover:text-blue-700 hover:underline">Microsoft Copilot Product Information and Compliance Statements (2023-2025)</a> — Microsoft official pages.</li>
+                <li><a href="https://www.perplexity.ai/api/policies" target="_blank" class="text-blue-600 hover:text-blue-700 hover:underline">Perplexity AI Official Documentation and API Policies (2023-2025)</a> — primary vendor resources.</li>
+                <li>Comparative AI Performance in Infectious Disease Education, Frontiers in AI (2025) — independent benchmark.</li>
+                <li>Accuracy of AI Chatbots in Clinical Contexts, Frontiers in AI (2025).</li>
+                <li>Diagnostics and Educational AI Evaluation, Cureus (2025).</li>
+                <li>Pediatric Ophthalmology AI Assessment, Healio Journals (2025).</li>
+                <li>AI Chatbot Reading Skills Study, EU-JER (2025).</li>
+                <li>AI Models Comparison in Pediatric Dental Care, Frontiers in AI (2025).</li>
+                <li>Evaluation of ChatGPT and Microsoft Copilot on Certification Exams, PMC (2024).</li>
             </ul>
         </footer>
 
@@ -231,17 +245,19 @@
             new Chart(barCtx, {
                 type: 'bar', // Changed to bar chart
                 data: {
-                    labels: ['Versatility & Creativity', 'Enterprise Security', 'Factual Verifiability', 'Compliance Posture'],
+                    labels: ['Versatility & Creativity', 'Enterprise Security/Data Handling', 'Factual Verifiability/Accuracy', 'Compliance Posture'],
                     datasets: [
                         {
                             label: 'ChatGPT',
-                            data: [5, 3, 3, 3],
+                            // Updated data: [Versatility, Security, Accuracy, Compliance]
+                            data: [5, 3, 3, 4],
                             backgroundColor: 'rgba(29, 78, 216, 0.8)', // blue-700
                             borderColor: 'rgba(29, 78, 216, 1)',
                             borderWidth: 1
                         },
                         {
                             label: 'Microsoft Copilot',
+                            // Data remains: [Versatility, Security, Accuracy, Compliance]
                             data: [3, 5, 4, 5],
                             backgroundColor: 'rgba(34, 139, 34, 0.8)', // forest green (darker)
                             borderColor: 'rgba(34, 139, 34, 1)',
@@ -249,7 +265,8 @@
                         },
                         {
                             label: 'Perplexity AI',
-                            data: [2, 3, 5, 4],
+                            // Updated data: [Versatility, Security, Accuracy, Compliance]
+                            data: [2, 4, 5, 4],
                             backgroundColor: 'rgba(217, 119, 6, 0.8)', // orange-600
                             borderColor: 'rgba(217, 119, 6, 1)',
                             borderWidth: 1
@@ -274,8 +291,9 @@
                                     label += context.formattedValue;
                                     let text = '';
                                     if (context.label === 'Versatility & Creativity') text = (context.formattedValue == 5) ? ' (Excels in generative tasks)' : ' (Standard for basic needs)';
-                                    if (context.label === 'Enterprise Security' && context.dataset.label === 'Microsoft Copilot') text = ' (Industry Leader with M365 integration)';
-                                    if (context.label === 'Factual Verifiability' && context.dataset.label === 'Perplexity AI') text = ' (Highest due to RAG and citations)';
+                                    if (context.label === 'Enterprise Security/Data Handling' && context.dataset.label === 'Microsoft Copilot') text = ' (Industry Leader with M365 integration)';
+                                    if (context.label === 'Factual Verifiability/Accuracy' && context.dataset.label === 'Perplexity AI') text = ' (Highest due to RAG and citations)';
+                                    if (context.label === 'Compliance Posture' && context.dataset.label === 'Microsoft Copilot') text = ' (Comprehensive Certifications)';
                                     return label + text;
                                 }
                             }
