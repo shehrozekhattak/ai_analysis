@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive AI Platform Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Increased max-width for horizontal bars */
+            margin: 2rem auto;
+            height: 450px; /* Increased height for bar chart */
+            max-height: 600px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+                max-height: 700px;
+            }
+        }
+        /* Styling for the comparison table (applied alongside Tailwind) */
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e7e5e4; /* stone-300 */
+        }
+        /* Dimension header cell style in table body */
+        .comparison-table th.dimension-header {
+            @apply font-bold text-stone-800 bg-stone-100;
+        }
+        .comparison-table tr:hover {
+            @apply bg-stone-50;
+        }
+    </style>
+    <!-- Chosen Palette: Warm Stone & Blue --><!-- Application Structure Plan: I've designed a task-oriented "decision support" dashboard. Instead of mirroring the static report, this SPA breaks the content into logical, interactive sections. The flow guides the user from a high-level summary, to a direct "At-a-Glance" static comparison table, to a visual "Bar Chart" synthesizing the report's qualitative findings, then to "Deep Dive" narratives (in tabs), and finally to "Recommendations" (an interactive accordion). This structure is chosen because the primary user task is *comparison* for decision-making. The comprehensive table and bar chart directly serve this task, making the report's insights far more consumable and explorable than a purely static layout. --><!-- Visualization & Content Choices: 1) Report Info: Comparison Table -> Goal: Direct Comparison -> Viz/Method: Static, Responsive HTML Table. Interaction: None (static reference). Justification: Provides a single, complete view of all dimensions for quick reference, as requested by the user. 2) Report Info: Qualitative findings on platform strengths (Narratives, Exec Summary) -> Goal: Synthesize & Compare Visually -> Viz/Method: Horizontal Bar Chart (Canvas). Interaction: Tooltips on hover. Justification: This clearly visualizes the report's core thesis by translating qualitative text into a comparative numeric score across defined metrics, offering excellent readability for direct comparison. Library: Chart.js (Canvas). 3) Report Info: Best-Fit Recommendations -> Goal: Guide User -> Viz/Method: Interactive Accordion. Interaction: User clicks a profile ('Innovation-Driven') -> JS toggles visibility of the recommendation text. Justification: More engaging and task-oriented ("Who are you?") than a static list. Library: Vanilla JS. --><!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            700: '#44403c',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        blue: {
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-stone-50 font-sans text-stone-900 leading-relaxed">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="mb-8 md:mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-stone-800 mb-2">Comparative AI Platform Analysis</h1>
+            <p class="text-lg text-stone-700">An Interactive Tool for Business Decision-Making</p>
+        </header>
+
+        <nav class="flex flex-wrap gap-2 mb-8 md:mb-12">
+            <a href="#compare" class="px-4 py-2 bg-white text-stone-700 rounded-full shadow-sm hover:shadow-md hover:bg-stone-100 transition-all">At-a-Glance</a>
+            <a href="#visual" class="px-4 py-2 bg-white text-stone-700 rounded-full shadow-sm hover:shadow-md hover:bg-stone-100 transition-all">Visual Summary</a>
+            <a href="#details" class="px-4 py-2 bg-white text-stone-700 rounded-full shadow-sm hover:shadow-md hover:bg-stone-100 transition-all">Platform Details</a>
+            <a href="#recommendations" class="px-4 py-2 bg-white text-stone-700 rounded-full shadow-sm hover:shadow-md hover:bg-stone-100 transition-all">Recommendations</a>
+        </nav>
+
+        <section class="bg-white p-6 rounded-lg shadow-lg mb-8 md:mb-12">
+            <h2 class="text-2xl font-bold text-stone-800 mb-3">Executive Summary</h2>
+            <p class="text-stone-700">This report provides a concise comparison of three leading AI language platforms—ChatGPT (OpenAI), Microsoft Copilot, and Perplexity AI—focused on their suitability for business decision-making. ChatGPT excels in general-purpose reasoning and creativity, Microsoft Copilot in enterprise-grade security and productivity synergy, and Perplexity AI in retrieval-augmented responses with high factual verifiability.</p>
+        </section>
+
+        <section id="compare" class="mb-8 md:mb-12">
+            <h2 class="text-2xl font-bold text-stone-800 mb-3">At-a-Glance Comparison Table</h2>
+            <p class="text-stone-700 mb-6">This comprehensive table provides a static reference comparing the three platforms across the five critical business dimensions analyzed in the report.</p>
+            
+            <div class="overflow-x-auto bg-white rounded-xl shadow-2xl border border-stone-200">
+                <table class="w-full text-sm comparison-table">
+                    <thead>
+                        <tr class="uppercase tracking-wider bg-blue-700 text-white">
+                            <th class="w-1/4 rounded-tl-xl text-left pl-6 py-3">Dimension</th>
+                            <th class="w-1/4 text-center py-3">ChatGPT (OpenAI)</th>
+                            <th class="w-1/4 text-center py-3">Microsoft Copilot</th>
+                            <th class="w-1/4 rounded-tr-xl text-center pr-6 py-3">Perplexity AI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="dimension-header text-left pl-6">Model Training & Architecture</th>
+                            <td class="text-stone-700 text-left">Based on GPT-4 (or newer) architecture; diverse datasets; strong generative reasoning; flexible API access.</td>
+                            <td class="text-stone-700 text-left">Built on GPT-4-based models optimized for Microsoft Graph and productivity suite; strong reasoning integrated with organizational data.</td>
+                            <td class="text-stone-700 text-left pr-6">Retrieval-Augmented Generation (RAG) model combining LLM with live web data; focused on source citation and retrieval integration.</td>
+                        </tr>
+                        <tr>
+                            <th class="dimension-header text-left pl-6">Accuracy & Verifiability</th>
+                            <td class="text-stone-700 text-left">High accuracy in language generation; occasional hallucinations; strong reasoning. Outputs require internal fact-checking.</td>
+                            <td class="text-stone-700 text-left">Very reliable in business use cases; reduced hallucination due to application-specific data grounding and optimization.</td>
+                            <td class="text-stone-700 text-left pr-6">Highest verifiability due to mandatory live web referencing and source citations. Strongest in retrieval tasks; lower creativity focus.</td>
+                        </tr>
+                        <tr>
+                            <th class="dimension-header text-left pl-6">Compliance</th>
+                            <td class="text-stone-700 text-left">GDPR compliance and enterprise certifications available. Offers data residency options in paid tiers.</td>
+                            <td class="text-stone-700 text-left">**Industry leader:** Inherits robust Microsoft 365 compliance (GDPR, HIPAA, SOC 2, ISO). Designed for regulated industries.</td>
+                            <td class="text-stone-700 text-left pr-6">Compliance features expanding; Enterprise Pro tier offers SOC 2 compliance and stricter data handling.</td>
+                        </tr>
+                        <tr>
+                            <th class="dimension-header text-left pl-6">Privacy & Data Handling</th>
+                            <td class="text-stone-700 text-left">**Enterprise/API Default:** Customer data (prompts/outputs) is **not** used for model training or improvement by default.</td>
+                            <td class="text-stone-700 text-left">**Enterprise Default:** Customer data is securely contained within the M365 tenant and is **never** used to train OpenAI or Microsoft LLMs.</td>
+                            <td class="text-stone-700 text-left pr-6">**Enterprise Default:** User data is not used for training. Emphasizes transparent and minimal data retention policies.</td>
+                        </tr>
+                        <tr>
+                            <th class="dimension-header text-left pl-6">Pricing & Licensing</th>
+                            <td class="text-stone-700 text-left">Free tier; Plus ($20/mo), Team, and Enterprise tiers with advanced features, typically subscription-based per user.</td>
+                            <td class="text-stone-700 text-left">**M365 Copilot:** $30/user/month (annual commitment) on top of a qualifying Microsoft 365 license.</td>
+                            <td class="text-stone-700 text-left pr-6">Freemium model. Pro ($20/mo) and Enterprise Pro (approx. $40/user/month per seat) for teams with centralized billing.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="visual" class="mb-8 md:mb-12">
+            <h2 class="text-2xl font-bold text-stone-800 mb-3">Visual Synthesis: Platform Strengths at a Glance</h2>
+            <p class="text-stone-700 mb-4 max-w-3xl mx-auto text-center">This horizontal bar chart visually summarizes each platform's relative strengths across key business criteria. Platforms are scored on a 1-5 scale (1 = developing, 5 = industry-leading) based on the detailed analysis in this report. Easily compare how each AI solution performs in areas critical to your decision-making.</p>
+            
+            <div class="chart-container bg-white p-4 rounded-lg shadow-lg">
+                <canvas id="comparisonBarChart"></canvas>
+            </div>
+        </section>
+
+        <section id="details" class="mb-8 md:mb-12">
+            <h2 class="text-2xl font-bold text-stone-800 mb-3">Platform Deep Dive</h2>
+            <p class="text-stone-700 mb-6">For a more in-depth review, read the full narrative summary for each platform. This section contains the detailed explanations of each platform's positioning, strengths, and primary use cases.</p>
+            
+            <div class="flex flex-wrap border-b border-stone-300 mb-0">
+                <button class="tab-btn active" data-tab="chatgpt">ChatGPT</button>
+                <button class="tab-btn" data-tab="copilot">Microsoft Copilot</button>
+                <button class="tab-btn" data-tab="perplexity">Perplexity AI</button>
+            </div>
+            
+            <div id="tab-chatgpt" class="tab-content bg-white p-6 rounded-b-lg shadow-lg">
+                <h3 class="text-xl font-semibold text-stone-800 mb-2">ChatGPT (OpenAI)</h3>
+                <p class="text-stone-700">ChatGPT is highly versatile with powerful generative capabilities, making it the go-to for creative content generation, brainstorming, coding assistance, and exploratory decision support. Its model updates bring improved reasoning depth. Crucially for businesses, OpenAI's policy confirms that data submitted via ChatGPT Enterprise, Business, or the API is **not used to train or improve their models** by default, alleviating a major privacy concern. Its wide adoption is supported by flexible API access and data residency options.</p>
+            </div>
+            <div id="tab-copilot" class="tab-content hidden bg-white p-6 rounded-b-lg shadow-lg">
+                <h3 class="text-xl font-semibold text-stone-800 mb-2">Microsoft Copilot</h3>
+                <p class="text-stone-700">Microsoft Copilot leverages GPT-4 capabilities embedded within the Microsoft 365 environment, providing seamless integration with Word, Excel, Outlook, and Teams via the Microsoft Graph. This makes it exceptionally effective for productivity and workflow automation. Copilot's robust compliance certifications (GDPR, HIPAA, SOC 2) and Microsoft’s stringent data policies, including tenant isolation, offer the most secure and private foundation, preferred by large enterprises and regulated industries where data must remain within the organizational boundary and must not be used for model training.</p>
+            </div>
+            <div id="tab-perplexity" class="tab-content hidden bg-white p-6 rounded-b-lg shadow-lg">
+                <h3 class="text-xl font-semibold text-stone-800 mb-2">Perplexity AI</h3>
+                <p class="text-stone-700">Perplexity AI uniquely combines large language modeling with live retrieval from the web, which enhances factual accuracy and information verifiability. This Retrieval-Augmented Generation (RAG) design is crucial for businesses requiring high precision in knowledge management and compliance-proof outputs, as it provides direct, visible citations. Perplexity's Enterprise Pro tier has strengthened its offering with SOC 2 compliance and robust admin controls, making it a powerful contender for organizations prioritizing real-time, sourced information above all else.</p>
+            </div>
+        </section>
+
+        <section id="recommendations">
+            <h2 class="text-2xl font-bold text-stone-800 mb-3">Best-Fit Recommendations</h2>
+            <p class="text-stone-700 mb-6">Which profile best describes your organization? Click a profile to see the report's recommendation based on primary needs.</p>
+            
+            <div class="space-y-4">
+                <div>
+                    <button class="recommend-btn" data-content="recommend-1">
+                        <span class="font-semibold">Profile 1:</span> Innovation & Versatility
+                    </button>
+                    <div id="recommend-1" class="recommend-content hidden p-6 bg-stone-100 rounded-b-lg shadow-inner">
+                        <h4 class="font-bold text-lg text-blue-700 mb-2">Recommendation: ChatGPT</h4>
+                        <p class="text-stone-700">Offers the greatest flexibility for creative tasks, broad integrations, and general AI experimentation.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <button class="recommend-btn" data-content="recommend-2">
+                        <span class="font-semibold">Profile 2:</span> Enterprise Productivity & Security
+                    </button>
+                    <div id="recommend-2" class="recommend-content hidden p-6 bg-stone-100 rounded-b-lg shadow-inner">
+                        <h4 class="font-bold text-lg text-blue-700 mb-2">Recommendation: Microsoft Copilot</h4>
+                        <p class="text-stone-700">Deep integration with Microsoft 365 and superior compliance posture make it the clear preferred choice for enterprises embedded in the Microsoft ecosystem.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <button class="recommend-btn" data-content="recommend-3">
+                        <span class="font-semibold">Profile 3:</span> Accuracy-First & Verifiability
+                    </button>
+                    <div id="recommend-3" class="recommend-content hidden p-6 bg-stone-100 rounded-b-lg shadow-inner">
+                        <h4 class="font-bold text-lg text-blue-700 mb-2">Recommendation: Perplexity AI</h4>
+                        <p class="text-stone-700">RAG model is optimal for fact-centric, real-time decision support, research, and any workload where direct source citation and high data validation are paramount.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 pt-8 border-t border-stone-300">
+            <h3 class="text-lg font-semibold text-stone-800 mb-2">References</h3>
+            <ul class="list-disc list-inside text-stone-700 space-y-1">
+                <li>OpenAI ChatGPT Documentation and Compliance (openai.com)</li>
+                <li>Microsoft Copilot Product and Compliance Information (microsoft.com/copilot)</li>
+                <li>Perplexity AI Official Web and API Resources (perplexity.ai)</li>
+            </ul>
+        </footer>
+
+    </main>
+
+    <script>
+        const css = {
+            tab: {
+                base: "px-6 py-3 text-md font-medium transition-all",
+                active: "bg-white text-blue-600 border-b-2 border-blue-600 -mb-px rounded-t-lg",
+                inactive: "text-stone-600 hover:text-stone-900 border-b-2 border-transparent"
+            },
+            recommend: {
+                base: "w-full text-left px-6 py-4 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all font-medium text-stone-800 focus:outline-none",
+                active: "bg-white rounded-b-none shadow-xl"
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const barCtx = document.getElementById('comparisonBarChart').getContext('2d');
+            new Chart(barCtx, {
+                type: 'bar', // Changed to bar chart
+                data: {
+                    labels: ['Versatility & Creativity', 'Enterprise Security', 'Factual Verifiability', 'Compliance Posture'],
+                    datasets: [
+                        {
+                            label: 'ChatGPT',
+                            data: [5, 3, 3, 3],
+                            backgroundColor: 'rgba(29, 78, 216, 0.8)', // blue-700
+                            borderColor: 'rgba(29, 78, 216, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Microsoft Copilot',
+                            data: [3, 5, 4, 5],
+                            backgroundColor: 'rgba(34, 139, 34, 0.8)', // forest green (darker)
+                            borderColor: 'rgba(34, 139, 34, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Perplexity AI',
+                            data: [2, 3, 5, 4],
+                            backgroundColor: 'rgba(217, 119, 6, 0.8)', // orange-600
+                            borderColor: 'rgba(217, 119, 6, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y', // Makes the bar chart horizontal
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += context.formattedValue;
+                                    let text = '';
+                                    if (context.label === 'Versatility & Creativity') text = (context.formattedValue == 5) ? ' (Excels in generative tasks)' : ' (Standard for basic needs)';
+                                    if (context.label === 'Enterprise Security' && context.dataset.label === 'Microsoft Copilot') text = ' (Industry Leader with M365 integration)';
+                                    if (context.label === 'Factual Verifiability' && context.dataset.label === 'Perplexity AI') text = ' (Highest due to RAG and citations)';
+                                    return label + text;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 5, // Set max score for consistency
+                            ticks: {
+                                stepSize: 1
+                            },
+                            title: {
+                                display: true,
+                                text: 'Score (1 = Developing, 5 = Industry-Leading)',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false // Hide y-axis grid lines for cleaner look
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetTab = btn.dataset.tab;
+
+                    tabButtons.forEach(b => {
+                        b.className = b.dataset.tab === targetTab ? `${css.tab.base} ${css.tab.active}` : `${css.tab.base} ${css.tab.inactive}`;
+                    });
+                    
+                    tabContents.forEach(content => {
+                        if (content.id === `tab-${targetTab}`) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const recommendButtons = document.querySelectorAll('.recommend-btn');
+
+            recommendButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const contentId = btn.dataset.content;
+                    const content = document.getElementById(contentId);
+                    const isOpening = content.classList.contains('hidden');
+
+                    document.querySelectorAll('.recommend-content').forEach(c => c.classList.add('hidden'));
+                    document.querySelectorAll('.recommend-btn').forEach(b => b.className = `${css.recommend.base}`);
+
+                    if (isOpening) {
+                        content.classList.remove('hidden');
+                        btn.className = `${css.recommend.base} ${css.recommend.active}`;
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
